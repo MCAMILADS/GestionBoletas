@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/ventas")
 public class VentaController {
@@ -39,5 +41,10 @@ public class VentaController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(venta);
+    }
+    @GetMapping
+    public ResponseEntity<List<Venta>> listarTodasLasVentas() {
+        List<Venta> ventas = servicioVenta.obtenerTodasLasVentas();
+        return new ResponseEntity<>(ventas, HttpStatus.OK);
     }
 }

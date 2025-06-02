@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class ServicioVentaImpl implements ServicioVenta {
 
@@ -80,5 +82,9 @@ public class ServicioVentaImpl implements ServicioVenta {
         }
 
         return precioFinal;
+    }
+    @Override
+    public List<Venta> obtenerTodasLasVentas() {
+        return ventaRepositorio.findAll();
     }
 }

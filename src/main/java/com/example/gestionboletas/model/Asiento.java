@@ -35,6 +35,7 @@ public class Asiento {
 
     }
 
+
     public Asiento() {
         this.estado = EstadoAsiento.DISPONIBLE;
     }

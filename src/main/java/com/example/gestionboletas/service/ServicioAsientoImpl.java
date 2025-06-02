@@ -44,4 +44,14 @@ public class ServicioAsientoImpl implements ServicioAsiento {
         asiento.setEstado(asiento.getEstado().VENDIDO);
         asientoRepositorio.save(asiento);
     }
+
+    @Override
+    public void registrarAsiento(Asiento asiento) {
+        asientoRepositorio.save(asiento);
+    }
+
+    @Override
+    public List<Asiento> obtenerTodosLosAsientos() {
+        return asientoRepositorio.findAll();
+    }
 }

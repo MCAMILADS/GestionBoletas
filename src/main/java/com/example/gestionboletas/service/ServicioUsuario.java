@@ -9,4 +9,5 @@ public interface ServicioUsuario {
     Usuario registrarUsuario(Usuario usuario);
     List<Usuario> obtenerTodosLosUsuarios();
     void eliminarUsuario(Long idUsuario);
+
 }

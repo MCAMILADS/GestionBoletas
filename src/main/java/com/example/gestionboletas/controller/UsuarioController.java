@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/usuarios")
 public class UsuarioController {
@@ -33,5 +35,10 @@ public class UsuarioController {
             return ResponseEntity.notFound().build();
         }
         return ResponseEntity.ok(usuario);
+    }
+    @GetMapping
+    public ResponseEntity<List<Usuario>> listarTodosLosUsuarios() {
+        List<Usuario> usuarios = servicioUsuario.obtenerTodosLosUsuarios();
+        return ResponseEntity.ok(usuarios);
     }
 }

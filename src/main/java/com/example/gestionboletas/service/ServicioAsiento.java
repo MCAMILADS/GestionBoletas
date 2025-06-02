@@ -8,4 +8,6 @@ public interface ServicioAsiento {
     List<Asiento> obtenerAsientosDisponibles(Funcion funcion);
     Asiento obtenerAsientoPorId(String idAsiento);
     void marcarAsientoComoVendido(Asiento asiento);
+    void registrarAsiento(Asiento asiento);
+    List<Asiento> obtenerTodosLosAsientos();
 }

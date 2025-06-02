@@ -24,6 +24,12 @@ public class AsientoController {
     @Autowired
     private ServicioFuncion servicioFuncion;
 
+    @GetMapping
+    public ResponseEntity<List<Asiento>> obtenerTodosLosAsientos() {
+        List<Asiento> asientos = servicioAsiento.obtenerTodosLosAsientos();
+        return ResponseEntity.ok(asientos);
+    }
+
     @GetMapping("/disponibles")
     public ResponseEntity<List<Asiento>> obtenerAsientosDisponibles(@RequestParam Long funcionId) {
         Funcion funcion = servicioFuncion.obtenerFuncionPorId(funcionId);

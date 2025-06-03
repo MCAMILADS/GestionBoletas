@@ -1,5 +1,6 @@
 package com.example.gestionboletas.service;
 
+import com.example.gestionboletas.enums.EstadoAsiento;
 import com.example.gestionboletas.model.Asiento;
 import com.example.gestionboletas.model.Funcion;
 import com.example.gestionboletas.model.Usuario;
@@ -23,7 +24,7 @@ public class ServicioVentaImpl implements ServicioVenta {
     @Autowired
     private FuncionRepositorio funcionRepositorio;
 
-    @Autowired(required = false) // El usuario no siempre estará presente
+    @Autowired(required = false)
     private UsuarioRepositorio usuarioRepositorio;
 
     @Autowired
@@ -54,7 +55,7 @@ public class ServicioVentaImpl implements ServicioVenta {
         Venta ventaGuardada = ventaRepositorio.save(venta);
 
 
-        asiento.setEstado(asiento.getEstado().VENDIDO);
+        asiento.setEstado(EstadoAsiento.VENDIDO); // Asegúrate de que EstadoAsiento esté importado
         asientoRepositorio.save(asiento);
 
         servicioCentralizado.enviarInformacionVenta(ventaGuardada);
@@ -68,10 +69,10 @@ public class ServicioVentaImpl implements ServicioVenta {
     }
 
     private Double calcularPrecioFinal(Asiento asiento, Funcion funcion, Usuario usuario) {
-        Double precioBase = asiento.getLugar().getPrecio(); // Usamos el precio del lugar asociado al asiento
+        Double precioBase = asiento.getPrecio(); // <<--- ESTO ES LO QUE DEBES CAMBIAR
         Double precioFinal = precioBase;
 
-        if (funcion.getDia().equalsIgnoreCase("Segundo día") && !asiento.getLugar().getNombre().equalsIgnoreCase("VIP")) {
+        if (funcion.getDia().equalsIgnoreCase("Segundo día") && !asiento.getUbicacion().equalsIgnoreCase("VIP")) {
             if (funcion.getDescuentoSegundoDia() != null) {
                 precioFinal -= precioBase * funcion.getDescuentoSegundoDia();
             }

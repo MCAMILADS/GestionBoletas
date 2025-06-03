@@ -31,12 +31,11 @@ public class ServicioFuncionImpl implements ServicioFuncion {
     }
 
     @Override
-    @Transactional // Añade @Transactional si este método modifica la BD
+    @Transactional
     public void eliminarFuncion(Long idFuncion) {
         funcionRepositorio.deleteById(idFuncion);
     }
 
-    // --- Nuevo método recomendado para buscar por 'dia' ---
     public Funcion obtenerFuncionPorDia(String dia) {
         return funcionRepositorio.findByDia(dia).orElse(null);
     }

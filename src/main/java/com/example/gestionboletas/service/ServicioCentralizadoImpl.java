@@ -18,14 +18,12 @@ public class ServicioCentralizadoImpl implements ServicioCentralizado {
 
     @Override
     public void enviarInformacionVenta(Venta venta) {
-        // Simulación del envío de la información de la venta al sistema centralizado
         logger.info("Enviando información de la venta {} al sistema centralizado.", venta.getId());
         logger.info("Detalles de la venta: Asiento={}, Función={}, Usuario={}, Precio Final={}",
                 venta.getAsiento().getIdAsiento(),
                 venta.getFuncion().getId(),
                 (venta.getUsuario() != null ? venta.getUsuario().getId() : "Anónimo"),
                 venta.getPrecioFinal());
-        // Aquí iría la lógica real para enviar la información
         logger.info("Información de la venta {} enviada al sistema centralizado (simulado).", venta.getId());
     }
 }

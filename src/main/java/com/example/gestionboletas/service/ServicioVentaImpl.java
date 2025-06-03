@@ -69,7 +69,7 @@ public class ServicioVentaImpl implements ServicioVenta {
     }
 
     private Double calcularPrecioFinal(Asiento asiento, Funcion funcion, Usuario usuario) {
-        Double precioBase = asiento.getPrecio(); // <<--- ESTO ES LO QUE DEBES CAMBIAR
+        Double precioBase = asiento.getPrecio();
         Double precioFinal = precioBase;
 
         if (funcion.getDia().equalsIgnoreCase("Segundo día") && !asiento.getUbicacion().equalsIgnoreCase("VIP")) {

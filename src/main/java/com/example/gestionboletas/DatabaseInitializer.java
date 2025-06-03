@@ -1,10 +1,7 @@
 package com.example.gestionboletas;
 
-import com.example.gestionboletas.enums.EstadoAsiento;
-import com.example.gestionboletas.model.Asiento;
-import com.example.gestionboletas.model.Usuario;
-import com.example.gestionboletas.service.ServicioAsiento;
-import com.example.gestionboletas.service.ServicioUsuario;
+import com.example.gestionboletas.model.*;
+import com.example.gestionboletas.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -20,6 +17,15 @@ public class DatabaseInitializer implements CommandLineRunner {
 
     @Autowired
     private ServicioAsiento servicioAsiento;
+
+    @Autowired
+    private ServicioLugar servicioLugar;
+
+    @Autowired
+    private ServicioFuncion servicioFuncion;
+
+    @Autowired
+    private ServicioVenta servicioVenta;
 
     @Override
     public void run(String... args) throws Exception {
@@ -53,6 +59,33 @@ public class DatabaseInitializer implements CommandLineRunner {
             servicioUsuario.registrarUsuario(usuario);
         }
         System.out.println("Datos de usuario inicializados.");
+
+        // Inicialización de lugares
+        List<Lugar> lugares = Arrays.asList(
+                new Lugar(null, "norte barras", 85000.0),
+                new Lugar(null, "occidental lateral", 55000.0),
+                new Lugar(null, "occidental lateral norte", 43000.0),
+                new Lugar(null, "oriental general", 105000.0),
+                new Lugar(null, "palco general", 132000.0),
+                new Lugar(null, "occidental general", 28000.0),
+                new Lugar(null, "palco vip", 176000.0),
+                new Lugar(null, "sur general", 156000.0)
+        );
+        for (Lugar lugar : lugares) {
+            servicioLugar.guardarLugar(lugar);
+        }
+        System.out.println("Datos de lugar inicializados.");
+
+        // Inicialización de funciones
+        List<Funcion> funciones = Arrays.asList(
+                new Funcion(null, "viernes", 0.00),
+                new Funcion(null, "sabado", 0.30)
+        );
+        for (Funcion funcion : funciones) {
+            servicioFuncion.guardarFuncion(funcion);
+        }
+        System.out.println("Datos de función inicializados.");
+
 
         // Inicialización de asientos
         List<Asiento> asientos = Arrays.asList(
@@ -147,73 +180,29 @@ public class DatabaseInitializer implements CommandLineRunner {
                 new Asiento("OG010", "oriental general", 105000.0),
                 new Asiento("OG011", "oriental general", 105000.0),
                 new Asiento("OG012", "oriental general", 105000.0),
-                new Asiento("OG013", "oriental general", 105000.0),
-                new Asiento("OG014", "oriental general", 105000.0),
-                new Asiento("OG015", "oriental general", 105000.0),
-                new Asiento("OG016", "oriental general", 105000.0),
-                new Asiento("OG017", "oriental general", 105000.0),
-                new Asiento("OG018", "oriental general", 105000.0),
-                new Asiento("OG019", "oriental general", 105000.0),
-                new Asiento("OG020", "oriental general", 105000.0),
-                new Asiento("OG021", "oriental general", 105000.0),
-                new Asiento("OG022", "oriental general", 105000.0),
-                new Asiento("OG023", "oriental general", 105000.0),
-                new Asiento("OG024", "oriental general", 105000.0),
-                new Asiento("OG025", "oriental general", 105000.0),
-                new Asiento("PG001", "palco general", 132000.0),
-                new Asiento("PG002", "palco general", 132000.0),
-                new Asiento("PG003", "palco general", 132000.0),
-                new Asiento("PG004", "palco general", 132000.0),
-                new Asiento("PG005", "palco general", 132000.0),
-                new Asiento("PG006", "palco general", 132000.0),
-                new Asiento("PG007", "palco general", 132000.0),
-                new Asiento("PG008", "palco general", 132000.0),
-                new Asiento("PG009", "palco general", 132000.0),
-                new Asiento("PG010", "palco general", 132000.0),
-                new Asiento("PG011", "palco general", 132000.0),
-                new Asiento("PG012", "palco general", 132000.0),
-                new Asiento("PG013", "palco general", 132000.0),
-                new Asiento("PG014", "palco general", 132000.0),
-                new Asiento("PG015", "palco general", 132000.0),
-                new Asiento("PG016", "palco general", 132000.0),
-                new Asiento("PG017", "palco general", 132000.0),
-                new Asiento("PG018", "palco general", 132000.0),
-                new Asiento("PG019", "palco general", 132000.0),
-                new Asiento("PG020", "palco general", 132000.0),
-                new Asiento("PG021", "palco general", 132000.0),
-                new Asiento("PG022", "palco general", 132000.0),
-                new Asiento("PG023", "palco general", 132000.0),
-                new Asiento("PG024", "palco general", 132000.0),
-                new Asiento("PG025", "palco general", 132000.0),
-                new Asiento("OCG001", "occidental general", 28000.0),
-                new Asiento("OCG002", "occidental general", 28000.0),
-                new Asiento("OCG003", "occidental general", 28000.0),
-                new Asiento("OCG004", "occidental general", 28000.0),
-                new Asiento("OCG005", "occidental general", 28000.0),
-                new Asiento("OCG006", "occidental general", 28000.0),
-                new Asiento("OCG007", "occidental general", 28000.0),
-                new Asiento("OCG008", "occidental general", 28000.0),
-                new Asiento("OCG009", "occidental general", 28000.0),
-                new Asiento("OCG010", "occidental general", 28000.0),
-                new Asiento("OCG011", "occidental general", 28000.0),
-                new Asiento("OCG012", "occidental general", 28000.0),
-                new Asiento("OCG013", "occidental general", 28000.0),
-                new Asiento("OCG014", "occidental general", 28000.0),
-                new Asiento("OCG015", "occidental general", 28000.0),
-                new Asiento("OCG016", "occidental general", 28000.0),
-                new Asiento("OCG017", "occidental general", 28000.0),
-                new Asiento("OCG018", "occidental general", 28000.0),
-                new Asiento("OCG019", "occidental general", 28000.0),
-                new Asiento("OCG020", "occidental general", 28000.0),
-                new Asiento("OCG021", "occidental general", 28000.0),
-                new Asiento("OCG022", "occidental general", 28000.0),
-                new Asiento("OCG023", "occidental general", 28000.0),
-                new Asiento("OCG024", "occidental general", 28000.0),
-                new Asiento("OCG025", "occidental general", 28000.0)
+                new Asiento("OG013", "oriental general", 105000.)
         );
         for (Asiento asiento : asientos) {
             servicioAsiento.registrarAsiento(asiento);
         }
         System.out.println("Datos de asiento inicializados.");
+
+        List<Venta> ventas = Arrays.asList(
+                crearVenta("NB001", 1L, null, 85000.0),
+                crearVenta("OL005", 2L, 1L, 55000.0)
+                // Agrega más ventas según necesites
+        );
+        for (Venta venta : ventas) {
+            servicioVenta.realizarVenta(venta.getAsiento().getIdAsiento(), venta.getFuncion().getId(), venta.getUsuario() != null ? venta.getUsuario().getId() : null);
+        }
+        System.out.println("Datos de venta inicializados.");
+    }
+
+    private Venta crearVenta(String asientoId, Long funcionId, Long usuarioId, Double precioFinal) {
+        Asiento asiento = servicioAsiento.obtenerAsientoPorId(asientoId);
+        Funcion funcion = servicioFuncion.obtenerFuncionPorId(funcionId);
+        Usuario usuario = (usuarioId != null) ? servicioUsuario.obtenerUsuarioPorId(usuarioId) : null;
+        return new Venta(null, asiento, funcion, usuario, precioFinal);
     }
 }
+

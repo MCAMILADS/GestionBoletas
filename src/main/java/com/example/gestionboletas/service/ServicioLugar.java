@@ -7,5 +7,6 @@ public interface ServicioLugar {
     Lugar obtenerLugarPorId(Long idLugar);
     List<Lugar> obtenerTodosLosLugares();
     Lugar guardarLugar(Lugar lugar);
+
     void eliminarLugar(Long idLugar);
 }
